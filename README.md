@@ -159,4 +159,31 @@ Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://tw
 
 Second part of Airbnb: Joann Vuong
 ## License
-Public Domain. No copy write protection. 
+Public Domain. No copy write protection.
+
+## __Project: 0x05. AirBnB clone - RESTful API__
+
+This project is an introduction to RESTful API in real life scenarios. The codebase for this project was from the following [Github repository](https://github.com/alexaorrico/AirBnB_clone_v2).
+
+__Resources__
+
+- [REST API](https://intranet.alxswe.com/concepts/45) ALX concept page
+- [Learn REST: A RESTful Tutorial](https://www.restapitutorial.com/)
+- [Designing a RESTful API with Python and Flask](https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [Flask cheatsheet](https://s3.us-east-2.amazonaws.com/prettyprinted/flask_cheatsheet.pdf)
+- [What are Flask Blueprints, exactly?](https://stackoverflow.com/questions/24420857/what-are-flask-blueprints-exactly)
+- [Flask](https://palletsprojects.com/projects/flask/)
+- [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/stable/blueprints/)
+- [Flask tests](https://flask.palletsprojects.com/en/stable/testing/)
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/)
+- [AirBnB clone](https://intranet.alxswe.com/concepts/74) ALX concept page
+
+## More Info
+
+
+__Install Flask__
+
+```
+$ pip3 install Flask
+```
