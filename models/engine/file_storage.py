@@ -80,9 +80,9 @@ class FileStorage:
         """Count number of objects in storage"""
         if cls:
             if cls in classes.values():
-                return sum(
-                        1 for obj in self.__objects.values()
-                        if isinstance(obj, cls)
+                return (
+                        sum(1 for obj in self.__objects.values()
+                            if isinstance(obj, cls))
                 )
             return 0
         return len(self.__objects)

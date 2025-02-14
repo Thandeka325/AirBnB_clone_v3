@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-API actions for app and Flask app for HBNB
+Flask application entry point for the API
 """
 
 from flask import Flask, jsonify
