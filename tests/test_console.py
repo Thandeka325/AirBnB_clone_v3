@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Unit Test for BaseModel Class
+Unit Test for Console
 """
 import unittest
 from datetime import datetime
@@ -31,6 +31,7 @@ class TestHBNBCommandDocs(unittest.TestCase):
         expected = '\n        Command inerpreter class\n    '
         actual = HBNBCommand.__doc__
         self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main
