@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Command interpreter for Holberton AirBnB project
+HBNB console
 """
 import os
 import cmd
