@@ -1,45 +1,30 @@
 #!/usr/bin/python3
-"""
-Flask application entry point for the API
-"""
-
+"""Flask app for AirBnB API"""
 from flask import Flask, jsonify
 from flask_cors import CORS
-from os import getenv
-
-from api.v1.views import app_views
 from models import storage
-
+from api.v1.views import app_views
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
+# Register Blueprint
+app.register_blueprint(app_views, url_prefix="/api/v1")
 
-app.register_blueprint(app_views)
+# Enable CORS for all routes and allow requests from all origins (0.0.0.0)
+CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
-def teardown(exception):
-    """
-    teardown function
-    """
+def teardown_db(exception):
+    """Close the storage session"""
     storage.close()
 
 
 @app.errorhandler(404)
-def handle_404(exception):
-    """
-    handles 404 error
-    :return: returns 404 json
-    """
-    data = {
-        "error": "Not found"
-    }
+def not_found(error):
+    """Return JSON response for 404 errors"""
+    return jsonify({"error": "Not found"}), 404
 
-    resp = jsonify(data)
-    resp.status_code = 404
-
-    return(resp)
 
 if __name__ == "__main__":
-    app.run(getenv("HBNB_API_HOST"), getenv("HBNB_API_PORT"))
+    app.run(host="0.0.0.0", port=5000, threaded=True)
