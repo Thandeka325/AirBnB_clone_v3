@@ -51,7 +51,7 @@ class BaseModel:
         try:
             obj_to_str = json.dumps(obj_v)
             return obj_to_str is not None and isinstance(obj_to_str, str)
-        except:
+        except Exception as e:
             return False
 
     def bm_update(self, name, value):
@@ -69,19 +69,22 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
-    def to_json(self):
+    def to_json(self, for_storage=False):
         """returns json representation of self"""
         bm_dict = {}
-        for key, value in (self.__dict__).items():
-            if (self.__is_serializable(value)):
+        for key, value in self.__dict__.items():
+            if self.__is_serializable(value):
                 bm_dict[key] = value
             else:
                 bm_dict[key] = str(value)
         bm_dict['__class__'] = type(self).__name__
+
         if '_sa_instance_state' in bm_dict:
             bm_dict.pop('_sa_instance_state')
-        if storage_type == "db" and 'password' in bm_dict:
+
+        if not for_storage and 'password' in bm_dict:
             bm_dict.pop('password')
+
         return bm_dict
 
     def __str__(self):
@@ -93,4 +96,4 @@ class BaseModel:
         """
             deletes current instance from storage
         """
-        self.delete()
+        storage.delete(self)

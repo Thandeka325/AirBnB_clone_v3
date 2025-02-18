@@ -31,21 +31,22 @@ class User(BaseModel, Base):
         """
         initialize User Model, inherits from BaseModel
         """
+        if 'password' in kwargs:
+            kwargs['password'] = (
+                    md5(kwargs['password'].encode('utf-8')).hexidigest()
+            )
         super().__init__(*args, **kwargs)
 
     @property
     def password(self):
         """
         getter for password
-        :return: password (hashed)
         """
         return self.__dict__.get("password")
 
     @password.setter
     def password(self, password):
         """
-        Password setter, with md5 hasing
-        :param password: password
-        :return: nothing
+        Setter for password that hashes the password using MD5
         """
-        self.__dict__["password"] = md5(password.encode('utf-8')).hexdigest()
+        self.__dict__["password"] = md5(value.encode('utf-8')).hexdigest()
