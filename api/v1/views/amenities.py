@@ -50,12 +50,12 @@ def amenity_by_id(amenity_id):
     :return: state obj with the specified id or error
     """
 
-    fetched_obj = storage.get("Amenity", str(amenity_id))
+    fetched_obj = storage.get("Amenity", amenity_id)
 
     if fetched_obj is None:
         abort(404)
 
-    return jsonify(fetched_obj.to_json())
+    return jsonify(fetched_obj.to_dict())
 
 
 @app_views.route("/amenities/<amenity_id>",  methods=["PUT"],
@@ -76,7 +76,7 @@ def amenity_put(amenity_id):
         if key not in ["id", "created_at", "updated_at"]:
             setattr(fetched_obj, key, val)
     fetched_obj.save()
-    return jsonify(fetched_obj.to_json())
+    return jsonify(fetched_obj.to_dict())
 
 
 @app_views.route("/amenities/<amenity_id>",  methods=["DELETE"],
@@ -96,4 +96,4 @@ def amenity_delete_by_id(amenity_id):
     storage.delete(fetched_obj)
     storage.save()
 
-    return jsonify({})
+    return jsonify({}), 200
